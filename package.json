@@ -1,0 +1,22 @@
+{
+  "name": "doovy",
+  "version": "1.0.0",
+  "description": "Catálogo de álbumes y artistas — Parcial 1 Aplicaciones Híbridas",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon --env-file=.env main.js",
+    "start": "node --env-file=.env main.js",
+    "seed": "node --env-file=.env seed.js"
+  },
+  "keywords": [],
+  "author": "Karen Apaza",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongodb": "^7.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

@@ -1,0 +1,15 @@
+/* estilos propios de doovy, van encima de bootstrap */
+
+:root {
+    --doovy-principal: #6d28d9;
+    --doovy-fondo: #faf9fb;
+}
+
+body {
+    background-color: var(--doovy-fondo);
+}
+
+.card-img-top {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
