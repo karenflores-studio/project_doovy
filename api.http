@@ -1,0 +1,90 @@
+### traer todos los albumes
+GET http://localhost:3333/api/albumes
+
+### filtro 1: por seccion
+GET http://localhost:3333/api/albumes?seccion=jazz
+
+### filtro 2: busqueda por titulo
+GET http://localhost:3333/api/albumes?titulo=can
+
+### los dos filtros juntos
+GET http://localhost:3333/api/albumes?seccion=rock&titulo=can
+
+### paginacion y orden
+GET http://localhost:3333/api/albumes?limite=5&orden=titulo&dir=asc
+
+### traer un album por id (pega un _id real de los de arriba)
+GET http://localhost:3333/api/albumes/PEGAR_ID_ACA
+
+### id con formato invalido, tiene que dar 404 y no romperse
+GET http://localhost:3333/api/albumes/estonoesunid
+
+### crear un album
+POST http://localhost:3333/api/albumes
+Content-Type: application/json
+
+{
+  "titulo": "Clics Modernos",
+  "descripcion": "Segundo disco solista de Charly García, grabado en Nueva York.",
+  "canciones": ["Nos siguen pegando abajo", "No soy un extraño", "Plateado sobre plateado"],
+  "anio": 1983,
+  "link": "https://open.spotify.com/search/Clics%20Modernos",
+  "img": "https://picsum.photos/seed/clics/400/225",
+  "seccion": "rock",
+  "artista_id": "PEGAR_ID_DE_UN_ARTISTA"
+}
+
+### actualizar solo un campo (PATCH) - los demas quedan intactos
+PATCH http://localhost:3333/api/albumes/PEGAR_ID_ACA
+Content-Type: application/json
+
+{
+  "anio": 1984
+}
+
+### reemplazar el documento entero (PUT) -
+PUT http://localhost:3333/api/albumes/PEGAR_ID_ACA
+Content-Type: application/json
+
+{
+  "titulo": "Clics Modernos (remasterizado)",
+  "descripcion": "Versión remasterizada.",
+  "canciones": ["No soy un extraño"],
+  "anio": 1983,
+  "link": "https://open.spotify.com/search/Clics%20Modernos",
+  "img": "https://picsum.photos/seed/clics/400/225",
+  "seccion": "rock",
+  "artista_id": "PEGAR_ID_DE_UN_ARTISTA"
+}
+
+### eliminar (borrado logico)
+DELETE http://localhost:3333/api/albumes/PEGAR_ID_ACA
+
+### endpoint que no existe, tiene que dar json y no html
+GET http://localhost:3333/api/loquesea
+
+### obtener todos los clientes
+GET http://localhost:3333/api/artistas
+
+### obtener un artista por id
+GET http://localhost:3333/api/artistas/PEGAR_ID_ARTISTA
+
+### los albumes que pertenecen a un artista
+GET http://localhost:3333/api/artistas/PEGAR_ID_ARTISTA/albumes
+
+### un artista SIN albumes (Wos) -> total 0, array vacio, pero 200
+GET http://localhost:3333/api/artistas/PEGAR_ID_DE_WOS/albumes
+
+### artista que no existe -> 404
+GET http://localhost:3333/api/artistas/000000000000000000000000/albumes
+
+### crear un cliente
+POST http://localhost:3333/api/artistas
+Content-Type: application/json
+
+{
+  "nombre": "Charly García",
+  "foto": "https://picsum.photos/seed/charly/300/300",
+  "descripcion": "Músico y compositor argentino, fundador de Sui Generis y Serú Girán.",
+  "pais": "Argentina"
+}

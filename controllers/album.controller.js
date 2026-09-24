@@ -5,6 +5,7 @@
 import * as albumService from "../services/album.service.js"
 import * as artistaService from "../services/artista.service.js"
 import * as albumView from "../views/album.view.js"
+import { paginaError } from "../views/layout.view.js"
 
 // traduzco lo que llega del formulario html al formato que espera la base
 // el form manda todo como texto: el anio como string y las canciones en una sola cadena
@@ -38,7 +39,7 @@ export async function listar(req, res) {
         res.send(albumView.listadoAlbumes(albumes, seccion, busqueda))
     } catch (error) {
         console.error(error)
-        res.status(500).send(albumView.paginaError("Error", "No se pudo traer el listado."))
+        res.status(500).send(paginaError("Error", "No se pudo traer el listado."))
     }
 }
 
@@ -49,7 +50,7 @@ export async function ver(req, res) {
         const album = await albumService.getAlbumById(req.params.id)
 
         if (!album) {
-            return res.status(404).send(albumView.paginaError("404", "Ese álbum no existe."))
+            return res.status(404).send(paginaError("404", "Ese álbum no existe."))
         }
 
         const artista = await artistaService.getArtistaById(album.artista_id)
@@ -57,7 +58,7 @@ export async function ver(req, res) {
 
     } catch (error) {
         console.error(error)
-        res.status(500).send(albumView.paginaError("Error", "No se pudo traer el álbum."))
+        res.status(500).send(paginaError("Error", "No se pudo traer el álbum."))
     }
 }
 
@@ -69,7 +70,7 @@ export async function formularioNuevo(req, res) {
         res.send(albumView.formularioAlbum({}, artistas))
     } catch (error) {
         console.error(error)
-        res.status(500).send(albumView.paginaError("Error", "No se pudo cargar el formulario."))
+        res.status(500).send(paginaError("Error", "No se pudo cargar el formulario."))
     }
 }
 
@@ -88,7 +89,7 @@ export async function crear(req, res) {
 
     } catch (error) {
         console.error(error)
-        res.status(500).send(albumView.paginaError("Error", "No se pudo guardar el álbum."))
+        res.status(500).send(paginaError("Error", "No se pudo guardar el álbum."))
     }
 }
 
@@ -98,7 +99,7 @@ export async function formularioEditar(req, res) {
         const album = await albumService.getAlbumById(req.params.id)
 
         if (!album) {
-            return res.status(404).send(albumView.paginaError("404", "Ese álbum no existe."))
+            return res.status(404).send(paginaError("404", "Ese álbum no existe."))
         }
 
         const artistas = await artistaService.getArtistas()
@@ -106,7 +107,7 @@ export async function formularioEditar(req, res) {
 
     } catch (error) {
         console.error(error)
-        res.status(500).send(albumView.paginaError("Error", "No se pudo cargar el formulario."))
+        res.status(500).send(paginaError("Error", "No se pudo cargar el formulario."))
     }
 }
 
@@ -119,14 +120,14 @@ export async function editar(req, res) {
         const album = await albumService.actualizarAlbum(req.params.id, datos)
 
         if (!album) {
-            return res.status(404).send(albumView.paginaError("404", "Ese álbum no existe."))
+            return res.status(404).send(paginaError("404", "Ese álbum no existe."))
         }
 
         res.redirect(`/albumes/${req.params.id}`)
 
     } catch (error) {
         console.error(error)
-        res.status(500).send(albumView.paginaError("Error", "No se pudo editar el álbum."))
+        res.status(500).send(paginaError("Error", "No se pudo editar el álbum."))
     }
 }
 
@@ -136,14 +137,14 @@ export async function formularioEliminar(req, res) {
         const album = await albumService.getAlbumById(req.params.id)
 
         if (!album) {
-            return res.status(404).send(albumView.paginaError("404", "Ese álbum no existe."))
+            return res.status(404).send(paginaError("404", "Ese álbum no existe."))
         }
 
         res.send(albumView.confirmarEliminar(album))
 
     } catch (error) {
         console.error(error)
-        res.status(500).send(albumView.paginaError("Error", "No se pudo cargar la página."))
+        res.status(500).send(paginaError("Error", "No se pudo cargar la página."))
     }
 }
 
@@ -153,13 +154,13 @@ export async function eliminar(req, res) {
         const album = await albumService.eliminarAlbum(req.params.id)
 
         if (!album) {
-            return res.status(404).send(albumView.paginaError("404", "Ese álbum no existe."))
+            return res.status(404).send(paginaError("404", "Ese álbum no existe."))
         }
 
         res.redirect("/albumes")
 
     } catch (error) {
         console.error(error)
-        res.status(500).send(albumView.paginaError("Error", "No se pudo eliminar el álbum."))
+        res.status(500).send(paginaError("Error", "No se pudo eliminar el álbum."))
     }
 }

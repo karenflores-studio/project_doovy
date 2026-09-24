@@ -1,4 +1,4 @@
-// vistas de albumes: arman el html de cada pagina
+// vistas de albumes
 // no consultan la base, solo reciben los datos ya listos
 
 import { pagina } from "./layout.view.js"
@@ -6,7 +6,6 @@ import { esc, lista } from "./helpers.js"
 import { SECCIONES, nombreDeSeccion } from "../config/secciones.js"
 
 // tarjeta de un album, se repite dentro del listado
-// muestra los 6 datos que pide la consigna, incluidos el link y la imagen
 function tarjeta(album) {
     return `
     <div class="col-12 col-md-6 col-lg-4">
@@ -273,19 +272,8 @@ export function confirmarEliminar(album) {
     return pagina(`Eliminar ${album.titulo}`, html)
 }
 
-// pagina generica de error, la uso para el 404 y para fallas inesperadas
-export function paginaError(titulo, mensaje) {
-    const html = `
-    <div class="text-center py-5">
-        <h1 class="display-5">${esc(titulo)}</h1>
-        <p class="lead text-muted">${esc(mensaje)}</p>
-        <a class="btn btn-primary mt-3" href="/albumes">Volver al listado</a>
-    </div>`
 
-    return pagina(titulo, html)
-}
-
-// pagina de inicio con el menu de las 5 secciones que pide la consigna
+// pagina de inicio con el menu 
 // cada tarjeta lleva al listado filtrado por esa seccion
 export function inicio() {
 

@@ -1,6 +1,6 @@
-// las 5 secciones que pide la consigna
+// secciones
 // cada una tiene un slug (lo que va en la url y en la base)
-// y un nombre (lo que ve la persona)
+// y un nombre (lo que ve el user)
 
 export const SECCIONES = [
     { slug: "rock",        nombre: "Rock" },

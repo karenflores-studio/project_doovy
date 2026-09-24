@@ -64,3 +64,16 @@ export function pagina(titulo, contenido, seccionActiva = "") {
 </body>
 </html>`
 }
+
+// pagina generica de error, la uso para el 404 y para fallas inesperadas
+// vive aca y no en album.view porque la usan todas las secciones del sitio
+export function paginaError(titulo, mensaje) {
+    const html = `
+    <div class="text-center py-5">
+        <h1 class="display-5">${esc(titulo)}</h1>
+        <p class="lead text-muted">${esc(mensaje)}</p>
+        <a class="btn btn-primary mt-3" href="/albumes">Volver al listado</a>
+    </div>`
+
+    return pagina(titulo, html)
+}

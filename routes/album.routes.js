@@ -20,8 +20,7 @@ router.post("/albumes/editar/:id", albumController.editar)
 router.get("/albumes/eliminar/:id", albumController.formularioEliminar)
 router.post("/albumes/eliminar/:id", albumController.eliminar)
 
-// esta va ultima a proposito: /albumes/:id matchea con cualquier texto
-// si estuviera arriba, /albumes/nuevo entraria aca y buscaria un album con id "nuevo"
+// esta va ultima matchea con cualquier texto
 router.get("/albumes/:id", albumController.ver)
 
 export default router

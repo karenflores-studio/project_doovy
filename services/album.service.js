@@ -1,6 +1,6 @@
 // capa de servicios de albumes
 // aca vive toda la logica que habla con mongo
-// no sabe nada de html ni de req/res, solo de datos
+// solo sabe de datos
 
 import { ObjectId } from "mongodb"
 import { db, esIdValido } from "../config/db.js"
@@ -86,8 +86,7 @@ export async function crearAlbum(album) {
     return { _id: resultado.insertedId, ...datos }
 }
 
-// reemplazo el album entero, es lo que usa PUT
-// ojo: los campos que no me manden se pierden
+// reemplazo el album entero PUT
 export async function reemplazarAlbum(id, album) {
     if (!esIdValido(id)) return null
 
@@ -102,8 +101,7 @@ export async function reemplazarAlbum(id, album) {
     return { _id: new ObjectId(id), ...datos }
 }
 
-// actualizo solo los campos que me mandan, es lo que usa PATCH
-// los demas campos quedan como estaban
+// actualizo solo los campos que me mandan PATCH
 export async function actualizarAlbum(id, cambios) {
     if (!esIdValido(id)) return null
 
