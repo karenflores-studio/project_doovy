@@ -1,15 +1,339 @@
-/* estilos propios de doovy, van encima de bootstrap */
-
 :root {
-    --doovy-principal: #6d28d9;
-    --doovy-fondo: #faf9fb;
+    /* los tres colores de la identidad */
+    --doovy-acento: #E50050;
+    --doovy-negro: #0D0D0D;
+    --doovy-blanco: #FFFCFC;
+
+    /* grises derivados del negro, para separar capas sin meter color */
+    --doovy-superficie: #151515;
+    --doovy-superficie-alta: #1E1E1E;
+    --doovy-borde: rgba(255, 252, 252, .08);
+    --doovy-borde-fuerte: rgba(255, 252, 252, .18);
+    --doovy-apagado: rgba(255, 252, 252, .55);
+
+    --doovy-radio: 14px;
 }
+
+/* piso las variables de bootstrap*/
+[data-bs-theme="dark"] {
+    --bs-body-bg: var(--doovy-negro);
+    --bs-body-color: var(--doovy-blanco);
+    --bs-emphasis-color: var(--doovy-blanco);
+    --bs-secondary-color: var(--doovy-apagado);
+
+    --bs-primary: var(--doovy-acento);
+    --bs-primary-rgb: 229, 0, 80;
+
+    --bs-border-color: var(--doovy-borde);
+    --bs-border-radius: var(--doovy-radio);
+
+    --bs-link-color: var(--doovy-blanco);
+    --bs-link-color-rgb: 255, 252, 252;
+    --bs-link-hover-color: var(--doovy-acento);
+    --bs-link-hover-color-rgb: 229, 0, 80;
+}
+
+/* ---------- base ---------- */
 
 body {
-    background-color: var(--doovy-fondo);
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background-color: var(--doovy-negro);
+    color: var(--doovy-blanco);
+    letter-spacing: -.01em;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -.02em;
+}
+
+.text-muted {
+    color: var(--doovy-apagado) !important;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--doovy-acento);
+    outline-offset: 2px;
+}
+
+/* ---------- nav bar---- */
+
+.doovy-nav {
+    background-color: rgba(13, 13, 13, .85);
+    border-bottom: 1px solid var(--doovy-borde);
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    backdrop-filter: blur(12px);
+    padding-block: .75rem;
+}
+
+.doovy-nav .navbar-brand {
+    color: var(--doovy-blanco);
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: -.03em;
+}
+
+/* las seccionesa*/
+.doovy-nav .nav-link {
+    color: var(--doovy-apagado);
+    border-radius: 999px;
+    padding: .3rem .9rem;
+    font-size: .92rem;
+    transition: background-color .15s, color .15s;
+}
+
+.doovy-nav .nav-link:hover {
+    color: var(--doovy-blanco);
+    background-color: var(--doovy-superficie-alta);
+}
+
+/* la seccion en la que estoy parada: aca si va el acento */
+.doovy-nav .nav-link.active {
+    color: var(--doovy-blanco);
+    background-color: var(--doovy-acento);
+}
+
+/* ---------- 4. tarjetas ---------- */
+
+.card {
+    background-color: var(--doovy-superficie);
+    border: 1px solid var(--doovy-borde);
+    border-radius: var(--doovy-radio);
+    overflow: hidden;
+    transition: border-color .18s, transform .18s;
+}
+
+.card:hover {
+    border-color: var(--doovy-borde-fuerte);
+    transform: translateY(-2px);
+}
+
+.card-footer,
+.card-header {
+    background-color: transparent;
+    border-color: var(--doovy-borde);
+}
+
+/* todas las tapas con la misma proporcion, si no la grilla queda despareja */
 .card-img-top {
     aspect-ratio: 16 / 9;
     object-fit: cover;
+}
+
+/* la sombra clara de bootstrap no se ve sobre negro, la hago real */
+.shadow-sm {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, .5) !important;
+}
+
+/* ---------- 5. botones ---------- */
+
+.btn {
+    border-radius: 999px;
+    font-weight: 500;
+    padding-inline: 1.1rem;
+}
+
+/* el boton principal es el unico relleno de rosa */
+.btn-primary {
+    background-color: var(--doovy-acento);
+    border-color: var(--doovy-acento);
+    color: var(--doovy-blanco);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #c40045;
+    border-color: #c40045;
+    color: var(--doovy-blanco);
+}
+
+/* el boton de escuchar: en vez del verde de bootstrap, blanco sobrio */
+.btn-success {
+    background-color: var(--doovy-blanco);
+    border-color: var(--doovy-blanco);
+    color: var(--doovy-negro);
+    font-weight: 600;
+}
+
+.btn-success:hover {
+    background-color: var(--doovy-apagado);
+    border-color: var(--doovy-apagado);
+    color: var(--doovy-negro);
+}
+
+/* los botones de accion de las tarjetas (ver, editar, eliminar) van neutros
+   para no llenar la pantalla de colores: el color aparece recien en el hover */
+.btn-outline-primary,
+.btn-outline-warning,
+.btn-outline-danger,
+.btn-outline-secondary {
+    color: var(--doovy-apagado);
+    border-color: var(--doovy-borde-fuerte);
+    background-color: transparent;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-secondary:hover {
+    color: var(--doovy-negro);
+    background-color: var(--doovy-blanco);
+    border-color: var(--doovy-blanco);
+}
+
+.btn-outline-warning:hover {
+    color: var(--doovy-negro);
+    background-color: #ffc94d;
+    border-color: #ffc94d;
+}
+
+/* eliminar es la unica accion destructiva, ahi el rosa funciona como aviso */
+.btn-outline-danger:hover {
+    color: var(--doovy-blanco);
+    background-color: var(--doovy-acento);
+    border-color: var(--doovy-acento);
+}
+
+.btn-link {
+    color: var(--doovy-apagado);
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    color: var(--doovy-acento);
+}
+
+/* ---------- 6. etiquetas de seccion ---------- */
+
+.badge.text-bg-secondary {
+    background-color: var(--doovy-superficie-alta) !important;
+    color: var(--doovy-apagado) !important;
+    border: 1px solid var(--doovy-borde);
+    border-radius: 999px;
+    font-weight: 500;
+    padding: .35em .8em;
+}
+
+/* ---------- 7. formularios ---------- */
+
+.form-control,
+.form-select {
+    background-color: var(--doovy-superficie);
+    border: 1px solid var(--doovy-borde);
+    color: var(--doovy-blanco);
+    border-radius: 10px;
+    padding: .6rem .9rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: var(--doovy-superficie);
+    border-color: var(--doovy-acento);
+    color: var(--doovy-blanco);
+    box-shadow: 0 0 0 3px rgba(229, 0, 80, .18);
+}
+
+.form-control::placeholder {
+    color: rgba(255, 252, 252, .35);
+}
+
+.form-label {
+    font-size: .88rem;
+    color: var(--doovy-apagado);
+    margin-bottom: .35rem;
+}
+
+.form-text {
+    color: rgba(255, 252, 252, .4);
+}
+
+/* las opciones del desplegable las dibuja el sistema, hay que pintarlas aparte */
+.form-select option {
+    background-color: var(--doovy-superficie);
+    color: var(--doovy-blanco);
+}
+
+/* ---------- 8. avisos ---------- */
+
+.alert {
+    border-radius: var(--doovy-radio);
+    border: 1px solid var(--doovy-borde);
+    background-color: var(--doovy-superficie);
+    color: var(--doovy-blanco);
+}
+
+/* los errores de validacion y el borrado si llevan el acento */
+.alert-danger {
+    border-color: rgba(229, 0, 80, .45);
+    background-color: rgba(229, 0, 80, .1);
+    color: var(--doovy-blanco);
+}
+
+.alert-warning {
+    border-color: rgba(255, 201, 77, .35);
+    background-color: rgba(255, 201, 77, .08);
+    color: var(--doovy-blanco);
+}
+
+/* ---------- 9. listas ---------- */
+
+.list-group-item {
+    background-color: var(--doovy-superficie);
+    border-color: var(--doovy-borde);
+    color: var(--doovy-blanco);
+}
+
+.list-group-numbered > .list-group-item::before {
+    color: var(--doovy-apagado);
+}
+
+/* ---------- 10. portada ---------- */
+
+.doovy-hero {
+    background: radial-gradient(120% 140% at 50% 0%, rgba(229, 0, 80, .35) 0%, transparent 62%);
+    border-radius: 24px;
+    padding: 4rem 1rem 3rem;
+    margin-bottom: 2.5rem;
+}
+
+.doovy-hero h1 {
+    font-size: clamp(2.4rem, 7vw, 3.6rem);
+    font-weight: 700;
+}
+
+/* las tarjetas de seccion de la home */
+.doovy-seccion:hover {
+    border-color: var(--doovy-acento);
+}
+
+.doovy-seccion:hover h2 {
+    color: var(--doovy-acento);
+}
+
+/* ---------- 11. pie ---------- */
+
+.doovy-footer {
+    background-color: var(--doovy-superficie);
+    border-top: 1px solid var(--doovy-borde);
+    color: var(--doovy-apagado);
+}
+
+/* ---------- 12. pantallas chicas ---------- */
+
+@media (max-width: 991.98px) {
+    /* en el celular las pastillas del menu se acomodan en varias filas */
+    .doovy-nav .navbar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: .35rem;
+        margin-block: .6rem;
+    }
+
+    .doovy-hero {
+        padding: 2.5rem 1rem 2rem;
+    }
 }

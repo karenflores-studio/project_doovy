@@ -279,7 +279,7 @@ export function inicio() {
 
     const tarjetas = SECCIONES.map(s => `
         <div class="col-6 col-md-4">
-            <a class="card h-100 text-center text-decoration-none" href="/albumes?seccion=${esc(s.slug)}">
+            <a class="card doovy-seccion h-100 text-center text-decoration-none" href="/albumes?seccion=${esc(s.slug)}">
                 <div class="card-body py-5">
                     <h2 class="h4 mb-0">${esc(s.nombre)}</h2>
                 </div>
@@ -287,15 +287,15 @@ export function inicio() {
         </div>`).join("")
 
     const html = `
-    <div class="text-center mb-5">
-        <h1 class="display-5">Doovy</h1>
+    <div class="doovy-hero text-center">
+        <h1>Doovy</h1>
         <p class="lead text-muted">Catálogo de álbumes por género</p>
     </div>
 
     <div class="row g-3 justify-content-center">
         ${tarjetas}
         <div class="col-6 col-md-4">
-            <a class="card h-100 text-center text-decoration-none bg-dark text-white" href="/albumes">
+            <a class="card doovy-seccion h-100 text-center text-decoration-none" href="/albumes">
                 <div class="card-body py-5">
                     <h2 class="h4 mb-0">Ver todos</h2>
                 </div>
@@ -303,5 +303,6 @@ export function inicio() {
         </div>
     </div>`
 
-    return pagina("Inicio", html)
+    // le paso "inicio" para que no quede ninguna pastilla del menu marcada
+    return pagina("Inicio", html, "inicio")
 }

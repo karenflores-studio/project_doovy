@@ -15,9 +15,9 @@ function menu(seccionActiva) {
         </li>`).join("")
 
     return `
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg doovy-nav">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="/">Doovy</a>
+            <a class="navbar-brand" href="/">Doovy</a>
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                     <a class="nav-link ${seccionActiva === "" ? "active fw-bold" : ""}"
@@ -36,7 +36,7 @@ function menu(seccionActiva) {
 // pie de pagina, por ahora simple
 function pie() {
     return `
-    <footer class="bg-dark text-white-50 py-3 mt-5">
+    <footer class="doovy-footer py-4 mt-5">
         <div class="container small">
             Doovy — Parcial 1 Aplicaciones Híbridas
         </div>
@@ -47,12 +47,15 @@ function pie() {
 // todas las vistas terminan llamando a esta funcion
 export function pagina(titulo, contenido, seccionActiva = "") {
     return `<!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${esc(titulo)} | Doovy</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
