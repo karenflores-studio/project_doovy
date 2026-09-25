@@ -18,6 +18,7 @@ MONGO_URI=<se entregó aparte>
 DB_NAME=AH20232CP1
 PORT=3333
 ```
+Abrir en **http://localhost:3333**
 
 
 ## Decisiones de implementación
