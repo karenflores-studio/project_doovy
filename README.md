@@ -2,11 +2,12 @@
 Catálogo de álbumes musicales y artistas, con sitio web y API REST.
 
 **Parcial 1 — Aplicaciones Híbridas**
+```
 Tecnicatura Superior en Diseño y Programación Web
 Escuela Da Vinci 
 2026
 Alumna: **Karen Apaza Flores**
-
+```
 ---
 Configurar las variables de entorno
 
