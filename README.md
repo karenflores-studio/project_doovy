@@ -6,7 +6,7 @@ Catálogo de álbumes musicales y artistas, con sitio web y API REST.
 Tecnicatura Superior en Diseño y Programación Web
 Escuela Da Vinci 
 2026
-Alumna: **Karen Apaza Flores**
+Alumna: Karen Apaza Flores
 ```
 ---
 Configurar las variables de entorno
