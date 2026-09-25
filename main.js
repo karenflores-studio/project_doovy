@@ -43,7 +43,7 @@ app.use((req, res) => {
 // primero me conecto a la base y recien ahi prendo el servidor
 // si la base falla no tiene sentido levantar la web
 try {
-    //await conectarBase()
+    await conectarBase()
 
     app.listen(PORT, () => {
         console.log(`doovy funcionando en http://localhost:${PORT}`)

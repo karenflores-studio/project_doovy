@@ -2,6 +2,7 @@
 
 import * as artistaService from "../../services/artista.service.js"
 import * as albumService from "../../services/album.service.js"
+import { limpiarArtista, validarArtista } from "../../validators/artista.validator.js"
 
 // GET /api/artistas
 //obtener todos
@@ -35,10 +36,19 @@ export async function ver(req, res) {
 // crear
 export async function crear(req, res) {
     try {
-        const artista = await artistaService.crearArtista({
-            ...req.body,
-            eliminado: false
-        })
+        // me quedo solo con los campos que el sistema necesita
+        const datos = limpiarArtista(req.body)
+
+        // chequeo que esten todos y sean correctos
+        const errores = validarArtista(datos)
+        if (errores.length > 0) {
+            return res.status(400).json({ error: "Datos inválidos", detalles: errores })
+        }
+
+        // esto no lo puede decidir el cliente, lo pone el servidor
+        datos.eliminado = false
+
+        const artista = await artistaService.crearArtista(datos)
 
         res.status(201).json(artista)
     } catch (error) {

@@ -6,26 +6,18 @@ import * as albumService from "../services/album.service.js"
 import * as artistaService from "../services/artista.service.js"
 import * as albumView from "../views/album.view.js"
 import { paginaError } from "../views/layout.view.js"
+import { limpiarAlbum, validarAlbum } from "../validators/album.validator.js"
 
-// traduzco lo que llega del formulario html al formato que espera la base
-// el form manda todo como texto: el anio como string y las canciones en una sola cadena
+// lo unico especifico del formulario html es que las canciones llegan
+// como un texto con una cancion por linea, asi que las convierto a array
+// del resto de la limpieza y los tipos se encarga el validador
 function datosDelFormulario(body) {
     return {
-        titulo: (body.titulo || "").trim(),
-        descripcion: (body.descripcion || "").trim(),
-
-        // las canciones vienen en un textarea, una por linea
-        // las separo, les saco los espacios y descarto las lineas vacias
+        ...body,
         canciones: (body.canciones || "")
             .split("\n")
             .map(c => c.trim())
-            .filter(c => c !== ""),
-
-        anio: Number(body.anio),
-        link: (body.link || "").trim(),
-        img: (body.img || "").trim(),
-        seccion: body.seccion || "",
-        artista_id: body.artista_id || ""
+            .filter(c => c !== "")
     }
 }
 
@@ -77,7 +69,17 @@ export async function formularioNuevo(req, res) {
 // guardo el album nuevo
 export async function crear(req, res) {
     try {
-        const datos = datosDelFormulario(req.body)
+        const datos = limpiarAlbum(datosDelFormulario(req.body))
+        const errores = validarAlbum(datos)
+
+        // si hay errores vuelvo a mostrar el formulario con lo que ya habia cargado
+        // asi la persona no pierde todo lo que escribio
+        if (errores.length > 0) {
+            const artistas = await artistaService.getArtistas()
+            return res.status(400).send(
+                albumView.formularioAlbum(datos, artistas, errores.join(" - "))
+            )
+        }
 
         // los albumes nuevos arrancan sin la marca de borrado
         datos.eliminado = false
@@ -114,7 +116,18 @@ export async function formularioEditar(req, res) {
 // guardo los cambios
 export async function editar(req, res) {
     try {
-        const datos = datosDelFormulario(req.body)
+        const datos = limpiarAlbum(datosDelFormulario(req.body))
+        const errores = validarAlbum(datos)
+
+        // si hay errores devuelvo el formulario con lo que habia cargado
+        // le vuelvo a poner el _id porque limpiarAlbum lo descarta, y el formulario
+        // lo necesita para saber que es una edicion y no un alta
+        if (errores.length > 0) {
+            const artistas = await artistaService.getArtistas()
+            return res.status(400).send(
+                albumView.formularioAlbum({ ...datos, _id: req.params.id }, artistas, errores.join(" - "))
+            )
+        }
 
         // uso actualizar y no reemplazar, asi no pierdo los campos que no estan en el form
         const album = await albumService.actualizarAlbum(req.params.id, datos)

@@ -1,6 +1,13 @@
+import dns from "dns"
 // conexion unica a mongodb atlas
-// todos los servicios importan la base desde aca, asi no abrimos una conexion por archivo
 import { MongoClient, ObjectId } from "mongodb"
+
+// en algunas maquinas node no lee bien los dns del sistema y usa 127.0.0.1
+// mongodb+srv necesita resolver registros SRV, y sin un dns valido no conecta
+// si defino DNS_SERVERS en el .env le indico cuales usar
+if (process.env.DNS_SERVERS) {
+    dns.setServers(process.env.DNS_SERVERS.split(","))
+}
 
 // leo la configuracion del archivo .env
 const uri = process.env.MONGO_URI

@@ -5,16 +5,7 @@ import * as artistaService from "../services/artista.service.js"
 import * as albumService from "../services/album.service.js"
 import * as artistaView from "../views/artista.view.js"
 import { paginaError } from "../views/layout.view.js"
-
-// traduzco lo que llega del formulario al formato que guarda la base
-function datosDelFormulario(body) {
-    return {
-        nombre: (body.nombre || "").trim(),
-        foto: (body.foto || "").trim(),
-        descripcion: (body.descripcion || "").trim(),
-        pais: (body.pais || "").trim()
-    }
-}
+import { limpiarArtista, validarArtista } from "../validators/artista.validator.js"
 
 // listado de todos los artistas
 export async function listar(req, res) {
@@ -54,7 +45,16 @@ export function formularioNuevo(req, res) {
 // guardo el artista nuevo
 export async function crear(req, res) {
     try {
-        const datos = datosDelFormulario(req.body)
+        const datos = limpiarArtista(req.body)
+        const errores = validarArtista(datos)
+
+        // si hay errores devuelvo el formulario con lo que habia cargado
+        if (errores.length > 0) {
+            return res.status(400).send(
+                artistaView.formularioArtista(datos, errores.join(" - "))
+            )
+        }
+
         datos.eliminado = false
 
         const artista = await artistaService.crearArtista(datos)

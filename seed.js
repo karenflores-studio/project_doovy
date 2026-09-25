@@ -8,49 +8,49 @@ import { db, conectarBase, cerrarBase } from "./config/db.js"
 const artistas = [
     {
         nombre: "Luis Alberto Spinetta",
-        foto: "https://picsum.photos/seed/spinetta/300/300",
+        foto: "https://i.scdn.co/image/ab6761610000e5ebe1988a1a730ae50728967a16",
         descripcion: "Músico y compositor argentino, referente ineludible del rock nacional.",
         pais: "Argentina",
         eliminado: false
     },
     {
         nombre: "Soda Stereo",
-        foto: "https://picsum.photos/seed/soda/300/300",
+        foto: "https://www.cmtv.com.ar/imagenes_artistas/276.webp",
         descripcion: "Trío argentino que marcó el rock latinoamericano de los años 80 y 90.",
         pais: "Argentina",
         eliminado: false
     },
     {
         nombre: "Gustavo Cerati",
-        foto: "https://picsum.photos/seed/cerati/300/300",
+        foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1ICPvKhFaIxShK9aauqX4PIXo65uW0fzXddZZWeYGLxbVG_NC7PUDq58&s=10",
         descripcion: "Cantante y productor argentino, explorador del cruce entre rock y electrónica.",
         pais: "Argentina",
         eliminado: false
     },
     {
         nombre: "Mercedes Sosa",
-        foto: "https://picsum.photos/seed/sosa/300/300",
+        foto: "https://i.scdn.co/image/ab6761610000e5eb5eb33e71c4c337f35c1df5b4",
         descripcion: "La voz de América Latina, referente del folklore y la canción comprometida.",
         pais: "Argentina",
         eliminado: false
     },
     {
         nombre: "Bill Evans",
-        foto: "https://picsum.photos/seed/evans/300/300",
+        foto: "https://i.discogs.com/P39Eg-JIXycysc6A92Cs-jPpYBzGb3HRhv1VqPlB1KU/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTI1MjMx/MC0xNzI5MTMzNDkz/LTgyNTUuanBlZw.jpeg",
         descripcion: "Pianista estadounidense que redefinió el sonido del trío de jazz moderno.",
         pais: "Estados Unidos",
         eliminado: false
     },
     {
         nombre: "Miranda!",
-        foto: "https://picsum.photos/seed/miranda/300/300",
+        foto: "https://robertoramasso.com/wp-content/uploads/Miranda-Ramasso-Productora-1-819x1024.webp",
         descripcion: "Dúo argentino de pop electrónico surgido a comienzos de los 2000.",
         pais: "Argentina",
         eliminado: false
     },
     {
         nombre: "Wos",
-        foto: "https://picsum.photos/seed/wos/300/300",
+        foto: "https://media.trece.com.py/sites/2/2024/04/wos-.jpg",
         descripcion: "Rapero y cantautor argentino de la nueva escena.",
         pais: "Argentina",
         eliminado: false
@@ -88,7 +88,7 @@ async function cargarDatos() {
             canciones: ["Todas las hojas son del viento", "Cantata de puentes amarillos", "Bajan"],
             anio: 1973,
             link: "https://open.spotify.com/search/Artaud%20Spinetta",
-            img: "https://picsum.photos/seed/artaud/400/225",
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwtAK92nt8iNnMm7F7TydmjFq_gA4NNZ14C3LpfaT8ZA&s=10",
             seccion: "rock",
             artista_id: idSpinetta,
             eliminado: false
@@ -99,7 +99,7 @@ async function cargarDatos() {
             canciones: ["De música ligera", "Un millón de años luz", "Té para tres"],
             anio: 1990,
             link: "https://open.spotify.com/search/Cancion%20Animal",
-            img: "https://picsum.photos/seed/cancionanimal/400/225",
+            img: "https://mariskalrock.com/wp-content/uploads/2020/08/SODA-STEREO-INT.jpg",
             seccion: "rock",
             artista_id: idSoda,
             eliminado: false
@@ -110,7 +110,7 @@ async function cargarDatos() {
             canciones: ["Prófugos", "Persiana americana", "En camino"],
             anio: 1986,
             link: "https://open.spotify.com/search/Signos%20Soda%20Stereo",
-            img: "https://picsum.photos/seed/signos/400/225",
+            img: "https://akamai.sscdn.co/uploadfile/letras/albuns/5/1/b/4/195361745856012.jpg",
             seccion: "rock",
             artista_id: idSoda,
             eliminado: false
@@ -123,7 +123,7 @@ async function cargarDatos() {
             canciones: ["Don", "Yo te diré", "Bailarina"],
             anio: 2002,
             link: "https://open.spotify.com/search/Sin%20Restricciones%20Miranda",
-            img: "https://picsum.photos/seed/sinrestricciones/400/225",
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwhVaW4KsVq0_FHlZ5KncGqqULZ35m-goAQEo71Ab4PGsdCXQ058edxO0&s=10",
             seccion: "pop",
             artista_id: idMiranda,
             eliminado: false
@@ -134,7 +134,7 @@ async function cargarDatos() {
             canciones: ["Perfecta", "Traición", "Uno los dos"],
             anio: 2005,
             link: "https://open.spotify.com/search/Es%20Mentira%20Miranda",
-            img: "https://picsum.photos/seed/esmentira/400/225",
+            img: "https://www.cmtv.com.ar/tapas-cd/mirandaesmentira.webp",
             seccion: "pop",
             artista_id: idMiranda,
             eliminado: false
@@ -145,7 +145,7 @@ async function cargarDatos() {
             canciones: ["Prisionero", "Enamorada", "Navidad"],
             anio: 2007,
             link: "https://open.spotify.com/search/El%20Disco%20de%20Tu%20Corazon",
-            img: "https://picsum.photos/seed/discocorazon/400/225",
+            img: "https://i.scdn.co/image/ab67616d0000b273d0d2be31496cb2996903e1c4",
             seccion: "pop",
             artista_id: idMiranda,
             eliminado: false
@@ -158,7 +158,7 @@ async function cargarDatos() {
             canciones: ["My Foolish Heart", "Waltz for Debby", "Detour Ahead"],
             anio: 1961,
             link: "https://open.spotify.com/search/Waltz%20for%20Debby",
-            img: "https://picsum.photos/seed/waltzdebby/400/225",
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI8hKkyuT4Cbed-_yuv9hMvjNhUL24Pfn_qZSQ24dixVA5twRMSyy8wLQ&s=10",
             seccion: "jazz",
             artista_id: idEvans,
             eliminado: false
@@ -169,7 +169,7 @@ async function cargarDatos() {
             canciones: ["Autumn Leaves", "Blue in Green", "Peri's Scope"],
             anio: 1960,
             link: "https://open.spotify.com/search/Portrait%20in%20Jazz",
-            img: "https://picsum.photos/seed/portraitjazz/400/225",
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzCcDKwoBGAjX-yM5dJKWTbrqS946vCYQIw3wds0fpPcp1LWLpEWfAws4U&s=10",
             seccion: "jazz",
             artista_id: idEvans,
             eliminado: false
@@ -180,7 +180,7 @@ async function cargarDatos() {
             canciones: ["Israel", "Haunted Heart", "Beautiful Love"],
             anio: 1961,
             link: "https://open.spotify.com/search/Explorations%20Bill%20Evans",
-            img: "https://picsum.photos/seed/explorations/400/225",
+            img: "https://i.scdn.co/image/ab67616d0000b27380baf2f0d9d7d6ec18bf75f7",
             seccion: "jazz",
             artista_id: idEvans,
             eliminado: false
@@ -193,7 +193,7 @@ async function cargarDatos() {
             canciones: ["Puente", "Raíz", "Paseo inmoral"],
             anio: 1999,
             link: "https://open.spotify.com/search/Bocanada",
-            img: "https://picsum.photos/seed/bocanada/400/225",
+            img: "https://i.scdn.co/image/ab67616d0000b2731152471596980e1bba03b6ab",
             seccion: "electronica",
             artista_id: idCerati,
             eliminado: false
@@ -204,7 +204,7 @@ async function cargarDatos() {
             canciones: ["Cosas imposibles", "Artefacto", "Karaoke"],
             anio: 2002,
             link: "https://open.spotify.com/search/Siempre%20Es%20Hoy",
-            img: "https://picsum.photos/seed/siempreeshoy/400/225",
+            img: "https://i.scdn.co/image/ab67616d0000b27392441ecd34874c2bc4f19144",
             seccion: "electronica",
             artista_id: idCerati,
             eliminado: false
@@ -215,7 +215,7 @@ async function cargarDatos() {
             canciones: ["Déjà vu", "Rapto", "Magia"],
             anio: 2009,
             link: "https://open.spotify.com/search/Fuerza%20Natural",
-            img: "https://picsum.photos/seed/fuerzanatural/400/225",
+            img: "https://i.scdn.co/image/ab67616d0000b27314653b83cd7d851accdb5142",
             seccion: "electronica",
             artista_id: idCerati,
             eliminado: false
@@ -228,7 +228,7 @@ async function cargarDatos() {
             canciones: ["Alfonsina y el mar", "Juana Azurduy", "Dorotea la cautiva"],
             anio: 1969,
             link: "https://open.spotify.com/search/Mujeres%20Argentinas",
-            img: "https://picsum.photos/seed/mujeresargentinas/400/225",
+            img: "https://i.scdn.co/image/ab67616d00001e0258b372b5c69c59aec0c99989",
             seccion: "folklore",
             artista_id: idSosa,
             eliminado: false
@@ -239,7 +239,7 @@ async function cargarDatos() {
             canciones: ["Zona de promesas", "Razón de vivir", "La maza"],
             anio: 2009,
             link: "https://open.spotify.com/search/Cantora%201",
-            img: "https://picsum.photos/seed/cantora/400/225",
+            img: "https://www.cmtv.com.ar/tapas-cd/mercedessosacantora1.webp",
             seccion: "folklore",
             artista_id: idSosa,
             eliminado: false
@@ -250,7 +250,7 @@ async function cargarDatos() {
             canciones: ["Barro tal vez", "Seguir viviendo sin tu amor", "Quedándote o yéndote"],
             anio: 1982,
             link: "https://open.spotify.com/search/Kamikaze%20Spinetta",
-            img: "https://picsum.photos/seed/kamikaze/400/225",
+            img: "https://i.scdn.co/image/ab67616d0000b273a1433832dffafcb82ad46936",
             seccion: "folklore",
             artista_id: idSpinetta,
             eliminado: false
