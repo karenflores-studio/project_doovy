@@ -1,10 +1,10 @@
-// script para cargar datos de prueba en la base
-// corre con: npm run seed
-// borra todo lo que haya y carga de nuevo, asi lo puedo correr las veces que quiera
+// script para cargar los datos en la base
+// se corre a mano con: npm run seed
+// borra todo lo que haya y carga de nuevo
 
 import { db, conectarBase, cerrarBase } from "./config/db.js"
 
-// artistas van primero porque los albumes necesitan su _id para la relacion
+// los artistas van primero porque los albumes necesitan su _id para la relacion
 const artistas = [
     {
         nombre: "Luis Alberto Spinetta",
@@ -49,10 +49,19 @@ const artistas = [
         eliminado: false
     },
     {
+        // este artista queda sin albumes a proposito
+        // la consigna pide que un cliente pueda existir sin proyectos asociados
         nombre: "Wos",
         foto: "https://media.trece.com.py/sites/2/2024/04/wos-.jpg",
         descripcion: "Rapero y cantautor argentino de la nueva escena.",
         pais: "Argentina",
+        eliminado: false
+    },
+    {
+        nombre: "Green Day",
+        foto: "https://i.scdn.co/image/ab6761610000e5eb6ff0cd5ef2ecf733804984bb",
+        descripcion: "Banda estadounidense de punk rock y rock alternativo formada en 1987 en California por el vocalista y guitarrista Billie Joe Armstrong y el bajista Mike Dirnt, a quienes más tarde se unió el baterista Tré Cool. El grupo alcanzó el éxito masivo internacional en 1994 con su aclamado álbum Dookie, convirtiéndose en una de las bandas clave para revivir el interés popular por el punk rock en los años 90.",
+        pais: "Estados Unidos",
         eliminado: false
     }
 ]
@@ -73,11 +82,13 @@ async function cargarDatos() {
     // les pongo nombre para que los albumes se lean mas facil
     const ids = resultado.insertedIds
     const idSpinetta = ids[0]
-    const idSoda     = ids[1]
-    const idCerati   = ids[2]
-    const idSosa     = ids[3]
-    const idEvans    = ids[4]
-    const idMiranda  = ids[5]
+    const idSoda = ids[1]
+    const idCerati = ids[2]
+    const idSosa = ids[3]
+    const idEvans = ids[4]
+    const idMiranda = ids[5]
+    const idWos = ids[6]
+    const idGreenDay = ids[7]
 
     // los albumes se arman aca adentro porque recien ahora tengo los ids de los artistas
     const albumes = [
@@ -94,6 +105,17 @@ async function cargarDatos() {
             eliminado: false
         },
         {
+            titulo: "Signos",
+            descripcion: "Tercer álbum de Soda Stereo, el que los consolidó en toda Latinoamérica.",
+            canciones: ["Prófugos", "Persiana americana", "En camino"],
+            anio: 1986,
+            link: "https://open.spotify.com/search/Signos%20Soda%20Stereo",
+            img: "https://akamai.sscdn.co/uploadfile/letras/albuns/5/1/b/4/195361745856012.jpg",
+            seccion: "rock",
+            artista_id: idSoda,
+            eliminado: false
+        },
+        {
             titulo: "Canción Animal",
             descripcion: "El disco más rockero de Soda Stereo y uno de los más vendidos de la banda.",
             canciones: ["De música ligera", "Un millón de años luz", "Té para tres"],
@@ -105,14 +127,14 @@ async function cargarDatos() {
             eliminado: false
         },
         {
-            titulo: "Signos",
-            descripcion: "Tercer álbum de Soda Stereo, el que los consolidó en toda Latinoamérica.",
-            canciones: ["Prófugos", "Persiana americana", "En camino"],
-            anio: 1986,
-            link: "https://open.spotify.com/search/Signos%20Soda%20Stereo",
-            img: "https://akamai.sscdn.co/uploadfile/letras/albuns/5/1/b/4/195361745856012.jpg",
+            titulo: "American Idiot",
+            descripcion: "Relata la historia de un antihéroe adolescente llamado 'Jesus of Suburbia' en medio de una fuerte crítica social y política hacia la sociedad estadounidense post-11 de septiembre",
+            canciones: ["American Idiot", "Jesus of Suburbia", "Holiday", "Are We the Waiting", "St. Jimmy", "Give Me Novacaine", "She's a Rebel", "Extraordinary Girl", "Letterbomb", "Boulevard of Broken Dreams", "Wake Me Up When September Ends", "Homecoming", "Whatsername"],
+            anio: 2004,
+            link: "https://open.spotify.com/album/5dN7F9DV0Qg1XRdIgW8rke",
+            img: "https://i.scdn.co/image/ab67616d0000b27308a1b1e0674086d3f1995e1b",
             seccion: "rock",
-            artista_id: idSoda,
+            artista_id: idGreenDay,
             eliminado: false
         },
 
@@ -153,23 +175,23 @@ async function cargarDatos() {
 
         // ---------- jazz ----------
         {
-            titulo: "Waltz for Debby",
-            descripcion: "Grabado en vivo en el Village Vanguard, un clásico absoluto del piano jazz.",
-            canciones: ["My Foolish Heart", "Waltz for Debby", "Detour Ahead"],
-            anio: 1961,
-            link: "https://open.spotify.com/search/Waltz%20for%20Debby",
-            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI8hKkyuT4Cbed-_yuv9hMvjNhUL24Pfn_qZSQ24dixVA5twRMSyy8wLQ&s=10",
-            seccion: "jazz",
-            artista_id: idEvans,
-            eliminado: false
-        },
-        {
             titulo: "Portrait in Jazz",
             descripcion: "Primer disco del trío legendario de Bill Evans.",
             canciones: ["Autumn Leaves", "Blue in Green", "Peri's Scope"],
             anio: 1960,
             link: "https://open.spotify.com/search/Portrait%20in%20Jazz",
             img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzCcDKwoBGAjX-yM5dJKWTbrqS946vCYQIw3wds0fpPcp1LWLpEWfAws4U&s=10",
+            seccion: "jazz",
+            artista_id: idEvans,
+            eliminado: false
+        },
+        {
+            titulo: "Waltz for Debby",
+            descripcion: "Grabado en vivo en el Village Vanguard, un clásico absoluto del piano jazz.",
+            canciones: ["My Foolish Heart", "Waltz for Debby (incluyendo tomas adicionales o principales)", "Detour Ahead", "My Romance", "Some Other Time", "Milestones", "Porgy (I Loves You, Porgy)"],
+            anio: 1961,
+            link: "https://open.spotify.com/search/Waltz%20for%20Debby",
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI8hKkyuT4Cbed-_yuv9hMvjNhUL24Pfn_qZSQ24dixVA5twRMSyy8wLQ&s=10",
             seccion: "jazz",
             artista_id: idEvans,
             eliminado: false
@@ -234,17 +256,6 @@ async function cargarDatos() {
             eliminado: false
         },
         {
-            titulo: "Cantora 1",
-            descripcion: "Disco de duetos grabado en los últimos años de su carrera.",
-            canciones: ["Zona de promesas", "Razón de vivir", "La maza"],
-            anio: 2009,
-            link: "https://open.spotify.com/search/Cantora%201",
-            img: "https://www.cmtv.com.ar/tapas-cd/mercedessosacantora1.webp",
-            seccion: "folklore",
-            artista_id: idSosa,
-            eliminado: false
-        },
-        {
             titulo: "Kamikaze",
             descripcion: "Disco acústico e íntimo de Spinetta, cercano a la canción de raíz folklórica.",
             canciones: ["Barro tal vez", "Seguir viviendo sin tu amor", "Quedándote o yéndote"],
@@ -253,6 +264,17 @@ async function cargarDatos() {
             img: "https://i.scdn.co/image/ab67616d0000b273a1433832dffafcb82ad46936",
             seccion: "folklore",
             artista_id: idSpinetta,
+            eliminado: false
+        },
+        {
+            titulo: "Cantora 1",
+            descripcion: "Disco de duetos grabado en los últimos años de su carrera.",
+            canciones: ["Zona de promesas", "Razón de vivir", "La maza"],
+            anio: 2009,
+            link: "https://open.spotify.com/search/Cantora%201",
+            img: "https://www.cmtv.com.ar/tapas-cd/mercedessosacantora1.webp",
+            seccion: "folklore",
+            artista_id: idSosa,
             eliminado: false
         }
     ]
